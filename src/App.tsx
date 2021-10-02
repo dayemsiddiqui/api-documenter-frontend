@@ -8,7 +8,7 @@ import {
 import AccessibleNavigationAnnouncer from "./lib/components/AccessibleNavigationAnnouncer";
 import { Auth } from "./Authentication/state/Auth";
 import { PrivateRoute } from "./Authentication";
-import LandingPage from "./lib/pages/LandingPage";
+import LandingPage from "./apps/LandingPageApp/LandingPage";
 
 const DashboardApp = lazy(() => import("./apps/DashboardApp/DashboardApp"));
 

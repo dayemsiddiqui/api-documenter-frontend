@@ -9,6 +9,8 @@ module.exports = windmill({
       "hover:bg-brand-blue",
       "hover:bg-brand-green",
       "hover:bg-brand-yellow",
+      "transform",
+      "rotate-25",
     ],
   },
   theme: {
@@ -35,7 +37,10 @@ module.exports = windmill({
         },
         "brand-red": "#ED6A5A",
         "brand-yellow": "#FED766",
-        "brand-blue": "#3777FF",
+        "brand-blue": {
+          dark: "#3777FF",
+          DEFAULT: "#3993ff",
+        },
         "brand-green": {
           DEFAULT: "#59C9A5",
           dark: "#1abc9c",

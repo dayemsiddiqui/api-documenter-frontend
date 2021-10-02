@@ -42,7 +42,7 @@ export const DesktopNavLinks = tw.nav`
   hidden lg:flex flex-1 justify-between items-center py-10
 `;
 
-const SmartYoutuberHeader: React.FC<any> = ({ logoLink, links, className }) => {
+const LandingPageHeader: React.FC<any> = ({ logoLink, links, className }) => {
   /*
    * This header component accepts an optionals "links" prop that specifies the links to render in the navbar.
    * This links props should be an array of "NavLinks" components which is exported from this file.
@@ -65,8 +65,8 @@ const SmartYoutuberHeader: React.FC<any> = ({ logoLink, links, className }) => {
   ];
 
   const defaultLogoLink = (
-    <LogoLink tw="text-purple-700" href="/">
-      Smart Youtuber
+    <LogoLink tw="text-brand-blue hover:text-brand-blue" href="/">
+      <span tw="text-brand-red">Poker</span> Planning
     </LogoLink>
   );
 
@@ -79,4 +79,4 @@ const SmartYoutuberHeader: React.FC<any> = ({ logoLink, links, className }) => {
   );
 };
 
-export default SmartYoutuberHeader;
+export default LandingPageHeader;
