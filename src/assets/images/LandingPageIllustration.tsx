@@ -20,6 +20,16 @@ const eightImageVariants = {
       duration: 0.5,
     },
   },
+  hover: {
+    y: -20,
+  },
+};
+
+const jackImageVariants = {
+  initial: {},
+  hover: {
+    y: -50,
+  },
 };
 
 const threeImageVariants = {
@@ -36,6 +46,9 @@ const threeImageVariants = {
       duration: 0.5,
     },
   },
+  hover: {
+    y: -20,
+  },
 };
 
 export const LandingPageIllustration = () => (
@@ -45,10 +58,16 @@ export const LandingPageIllustration = () => (
       variants={threeImageVariants}
       initial="initial"
       animate="animate"
+      whileHover="hover"
     >
       <img src={ThreeImage} />
     </motion.div>
-    <motion.div className="w-auto h-auto p-2 bg-gray-50 rounded shadow z-2">
+    <motion.div
+      className="w-auto h-auto p-2 bg-gray-50 rounded shadow "
+      variants={jackImageVariants}
+      whileHover="hover"
+      initial="initial"
+    >
       <img src={JackImage} />
     </motion.div>
 
@@ -57,6 +76,7 @@ export const LandingPageIllustration = () => (
       variants={eightImageVariants}
       initial="initial"
       animate="animate"
+      whileHover="hover"
     >
       <img src={EightImage} />
     </motion.div>
