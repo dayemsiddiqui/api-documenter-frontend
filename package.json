@@ -4,18 +4,19 @@
   "description": "A multi theme, completely accessible, with components and pages examples, (almost) ready for production dashboard.",
   "private": true,
   "scripts": {
-    "tailwind:dev": "tailwindcss -i src/assets/css/tailwind.css -o src/assets/css/tailwind.output.css",
+    "tailwind:dev": "tailwindcss -i src/assets/css/tailwind.css -o src/assets/css/tailwind.output.css --watch",
     "tailwind:build": "cross-env NODE_ENV=production postcss src/assets/css/tailwind.css -o src/assets/css/tailwind.output.css",
     "prestart": "npm run tailwind:dev",
-    "start:dev": "react-scripts start",
     "prebuild": "npm run tailwind:build",
-    "build": "react-scripts build",
     "cz": "git-cz",
     "release": "release-it",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start:dev": "craco start",
+    "build": "craco build",
+    "test": "craco test"
   },
   "dependencies": {
+    "@craco/craco": "^6.3.0",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@tailwindcss/forms": "^0.3.3",
@@ -56,7 +57,7 @@
     "@release-it/conventional-changelog": "1.1.4",
     "@svgr/webpack": "5.4.0",
     "@types/url-join": "^4.0.1",
-    "autoprefixer": "^10.3.4",
+    "autoprefixer": "^9",
     "babel-plugin-styled-components": "^1.13.2",
     "commitizen": "4.1.2",
     "cross-env": "7.0.2",
@@ -64,13 +65,13 @@
     "cz-conventional-changelog": "3.2.0",
     "env-cmd": "^10.1.0",
     "git-scripts": "^0.4.3",
-    "postcss": "^8.3.6",
+    "postcss": "^7",
     "postcss-cli": "^8.3.1",
     "prettier": "2.3.2",
     "react-axe": "3.5.2",
     "release-it": "13.6.4",
     "surge": "^0.23.0",
-    "tailwindcss": "^2.2.15"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "keywords": [
     "windmill",
