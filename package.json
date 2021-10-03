@@ -115,7 +115,7 @@
   },
   "git": {
     "scripts": {
-      "pre-push": "npm run build; surge --project ./build --domain planning-poker.surge.sh"
+      "pre-push": "npm run build; surge --project ./build --domain planning-poker-app.surge.sh"
     }
   }
 }
