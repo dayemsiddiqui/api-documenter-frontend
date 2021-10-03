@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
-import { withRouter } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ReactComponent as SvgDecoratorBlob1 } from "../../assets/images/svg-decorator-blob-1.svg";
 import DesignIllustration from "../../assets/images/design-illustration-2.svg";
@@ -21,21 +21,14 @@ const LeftColumn = tw.div`relative lg:w-5/12 text-center max-w-lg mx-auto lg:max
 const RightColumn = tw.div`relative mt-12 lg:mt-0 flex-1 flex flex-col justify-center lg:self-end`;
 
 const Heading = tw.h1`font-bold text-3xl md:text-3xl lg:text-4xl xl:text-5xl text-brand-red leading-tight`;
-const Paragraph = tw.p`my-5 lg:my-8 text-base text-white xl:text-lg font-bold`;
 
-const LandingPage: React.FC<any> = ({ history }) => {
-  const { signIn } = useAuthentication(googleProvider);
-  const authenticate = async () => {
-    await signIn();
+const LandingPage: React.FC<any> = () => {
+  const history = useHistory();
+  const openApp = async () => {
     history.push("/app");
   };
 
-  useTitle("Smart Youtuber");
-
-  const { currentUser } = useContext(AuthContext);
-  if (currentUser) {
-    return <Redirect to="/app" />;
-  }
+  useTitle("Poker Planning");
 
   return (
     <>
@@ -48,7 +41,7 @@ const LandingPage: React.FC<any> = ({ history }) => {
                 Easy <span className="text-brand-blue">estimates</span> for
                 <span className="text-brand-blue"> efficient</span> teams.
               </Heading>
-              <PrimaryButton onClick={authenticate} className="my-6">
+              <PrimaryButton onClick={openApp} className="my-6">
                 Create A New Room
               </PrimaryButton>
             </LeftColumn>
@@ -69,4 +62,4 @@ const LandingPage: React.FC<any> = ({ history }) => {
   );
 };
 
-export default withRouter(LandingPage);
+export default LandingPage;
