@@ -9,26 +9,30 @@ const eightImageVariants = {
     rotate: 0,
     y: 20,
     x: -100,
-    zIndex: 0,
+    zIndex: 2,
   },
   animate: {
     rotate: 20,
     y: 20,
     x: -100,
-    zIndex: 0,
     transition: {
       duration: 0.5,
     },
+    zIndex: 2,
   },
   hover: {
     y: -20,
+    zIndex: 2,
   },
 };
 
 const jackImageVariants = {
-  initial: {},
+  initial: {
+    zIndex: 1,
+  },
   hover: {
     y: -50,
+    zIndex: 1,
   },
 };
 
@@ -37,11 +41,13 @@ const threeImageVariants = {
     rotate: 0,
     y: 20,
     x: 100,
+    zIndex: 0,
   },
   animate: {
     rotate: -20,
     y: 20,
     x: 100,
+    zIndex: 0,
     transition: {
       duration: 0.5,
     },

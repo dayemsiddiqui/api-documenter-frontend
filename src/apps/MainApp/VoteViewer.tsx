@@ -32,7 +32,7 @@ function PendingVote() {
 export const VoteViewer: React.FC<{}> = () => {
   const vote = 3;
   return (
-    <div className="max-w-xl mx-auto ">
+    <>
       <div className="grid grid-cols-4 justify-items-center">
         <HiddenVote />
         <VisibleVote vote={vote} />
@@ -43,9 +43,6 @@ export const VoteViewer: React.FC<{}> = () => {
         <VisibleVote vote={vote} />
         <PendingVote />
       </div>
-      <button className=" w-full my-4 bg-brand-red hover:bg-red-500 py-2 right rounded-lg text-capitalize text-white font-bold shadow">
-        Show Cards
-      </button>
-    </div>
+    </>
   );
 };
