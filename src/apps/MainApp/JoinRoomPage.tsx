@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { PageDialog } from "../../lib/components/PageDialog/PageDialog";
 import { useHistory } from "react-router-dom";
+import { PageDialogActions } from "../../lib/components/PageDialog/PageDialogActions";
+import { PageDialogContent } from "../../lib/components/PageDialog/PageDialogContent";
+import { PageDialogButton } from "../../lib/components/PageDialog/PageDialogButton";
 
 export const JoinRoomPage = () => {
   const history = useHistory();
@@ -12,31 +15,22 @@ export const JoinRoomPage = () => {
   };
   return (
     <PageDialog title="Join Room">
-      <div>
+      <PageDialogContent>
         <form>
           <input
             className="appearance-none border rounded w-full py-2 px-3 my-2 text-gray-700 leading-tight focus:outline-none"
             placeholder="Your Name"
           />
         </form>
-      </div>
-      {/**
-       * TODO:  Refactor these into sub components like PageDialogActionContainer, PageDialogSubmitButton, PageDialogCancelButton
-       */}
-      <div className="flex space-x-3 justify-end ">
-        <button
-          onClick={navigateToApp}
-          className="py-2 my-6 px-3 w-auto right-0 text-sm text-white rounded-md bg-brand-green shadow-md block md:inline-block active:bg-brand-green-light hover:bg-brand-green-dark focus:outline-none focus:shadow-outline-green"
-        >
+      </PageDialogContent>
+      <PageDialogActions>
+        <PageDialogButton onClick={navigateToApp} className="success-btn">
           Join
-        </button>
-        <button
-          onClick={navigateToHomePage}
-          className="py-2  my-6 px-3 w-auto right-0 text-sm text-white rounded-md bg-brand-red shadow-md block md:inline-block active:bg-red-400 hover:bg-red-500 focus:outline-none focus:shadow-outline-red"
-        >
+        </PageDialogButton>
+        <PageDialogButton onClick={navigateToHomePage} className=" cancel-btn">
           Cancel
-        </button>
-      </div>
+        </PageDialogButton>
+      </PageDialogActions>
     </PageDialog>
   );
 };

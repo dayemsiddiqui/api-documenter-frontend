@@ -6,3 +6,11 @@
 #root {
     height: 100vh;
 }
+
+.success-btn {
+    @apply text-white rounded-md bg-brand-green shadow-md active:bg-brand-green-light hover:bg-brand-green-dark focus:outline-none
+}
+
+.cancel-btn {
+    @apply text-white rounded-md bg-brand-red shadow-md active:bg-red-400 hover:bg-red-500 focus:outline-none
+}

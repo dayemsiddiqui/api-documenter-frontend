@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { PageDialog } from "../../lib/components/PageDialog/PageDialog";
 import { useHistory } from "react-router-dom";
+import { PageDialogContent } from "../../lib/components/PageDialog/PageDialogContent";
+import { PageDialogActions } from "../../lib/components/PageDialog/PageDialogActions";
+import { PageDialogButton } from "../../lib/components/PageDialog/PageDialogButton";
 
 export const CreateRoomPage = () => {
   const history = useHistory();
@@ -12,7 +15,7 @@ export const CreateRoomPage = () => {
   };
   return (
     <PageDialog title="Create Room">
-      <div>
+      <PageDialogContent>
         <form>
           <input
             className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
@@ -23,21 +26,15 @@ export const CreateRoomPage = () => {
             placeholder="Your Name"
           />
         </form>
-      </div>
-      <div className="flex space-x-3 justify-end ">
-        <button
-          onClick={navigateToApp}
-          className="py-2 my-6 px-3 w-auto right-0 text-sm text-white rounded-md bg-brand-green shadow-md block md:inline-block active:bg-brand-green-light hover:bg-brand-green-dark focus:outline-none focus:shadow-outline-green"
-        >
+      </PageDialogContent>
+      <PageDialogActions>
+        <PageDialogButton onClick={navigateToApp} className="success-btn">
           Create
-        </button>
-        <button
-          onClick={navigateToHomePage}
-          className="py-2  my-6 px-3 w-auto right-0 text-sm text-white rounded-md bg-brand-red shadow-md block md:inline-block active:bg-red-400 hover:bg-red-500 focus:outline-none focus:shadow-outline-red"
-        >
+        </PageDialogButton>
+        <PageDialogButton onClick={navigateToHomePage} className="cancel-btn">
           Cancel
-        </button>
-      </div>
+        </PageDialogButton>
+      </PageDialogActions>
     </PageDialog>
   );
 };
