@@ -1,4 +1,4 @@
-import { VoteValue } from "./Vote.model";
+import { VoteValue } from "./VoteValue";
 
 export type CardModel = {
   value: VoteValue;

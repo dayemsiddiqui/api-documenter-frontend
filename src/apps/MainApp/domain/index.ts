@@ -1,8 +1,9 @@
 /**
  * List of Domain Concepts:
  * Participant:
- * PokerRoom:
+ * PokerGame:
  * Vote:
+ * Room:
  */
 
 /**
@@ -14,5 +15,4 @@
  */
 
 export * from "./Card.model";
-export * from "./CreateVisibleVote";
-export * from "./Vote.model";
+export * from "./VoteValue";
