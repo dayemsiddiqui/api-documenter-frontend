@@ -1,14 +1,8 @@
 import { useState } from "react";
-
-export type FibonacciSeries = 1 | 2 | 3 | 5 | 8 | 13 | 21 | 34 | 55;
-export type Questionable = "?";
-
-export type Card = {
-  value: FibonacciSeries | Questionable;
-};
+import { CardModel } from "../domain/Card.model";
 
 export const useCardSelector = () => {
-  const cards: Card[] = [
+  const cards: CardModel[] = [
     {
       value: 1,
     },
@@ -41,11 +35,13 @@ export const useCardSelector = () => {
     },
   ];
 
-  const [selectedCard, setSelectedCard] = useState<Card | undefined>(undefined);
-  const pickCard = (card: Card) => {
+  const [selectedCard, setSelectedCard] = useState<CardModel | undefined>(
+    undefined
+  );
+  const pickCard = (card: CardModel) => {
     setSelectedCard(card);
   };
-  const isSelectedCard = (card: Card) => {
+  const isSelectedCard = (card: CardModel) => {
     if (selectedCard === undefined) {
       return false;
     }

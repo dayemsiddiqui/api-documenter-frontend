@@ -42,7 +42,7 @@ export const MainApp: React.FC<{}> = () => {
           </PrimaryLink>
         </div>
         {/*<button className=" w-full my-4 bg-brand-red hover:bg-red-500 py-2 right rounded-lg text-capitalize text-white font-bold shadow">*/}
-        {/*  Vote on Next Issue*/}
+        {/*  VoteModel on Next Issue*/}
         {/*</button>*/}
       </div>
       <div className="fixed bottom-0 w-full">
