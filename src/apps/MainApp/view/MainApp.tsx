@@ -1,8 +1,8 @@
 import React from "react";
-import LandingPageHeader from "../LandingPageApp/LandingPageHeader";
-import { CardSelector } from "./SelectedCard";
+import LandingPageHeader from "../../LandingPageApp/LandingPageHeader";
+import { CardSelector } from "./CardSelector";
 import { VoteViewer } from "./VoteViewer";
-import { PrimaryLink } from "../../lib/components/misc/Links";
+import { PrimaryLink } from "../../../lib/components/misc/Links";
 import Swal from "sweetalert2";
 
 export const MainApp: React.FC<{}> = () => {

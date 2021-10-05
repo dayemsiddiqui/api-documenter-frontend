@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AccessibleNavigationAnnouncer from "./lib/components/AccessibleNavigationAnnouncer";
 import { Auth } from "./Authentication/state/Auth";
 import LandingPage from "./apps/LandingPageApp/LandingPage";
-import { MainApp } from "./apps/MainApp/MainApp";
-import { JoinRoomPage } from "./apps/MainApp/JoinRoomPage";
-import { CreateRoomPage } from "./apps/MainApp/CreateRoomPage";
+import { MainApp } from "./apps/MainApp/view/MainApp";
+import { JoinRoomPage } from "./apps/MainApp/view/JoinRoomPage";
+import { CreateRoomPage } from "./apps/MainApp/view/CreateRoomPage";
 
 function App() {
   return (

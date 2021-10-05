@@ -1,9 +1,9 @@
 import React from "react";
-import { PageDialog } from "../../lib/components/PageDialog/PageDialog";
+import { PageDialog } from "../../../lib/components/PageDialog/PageDialog";
 import { useHistory } from "react-router-dom";
-import { PageDialogActions } from "../../lib/components/PageDialog/PageDialogActions";
-import { PageDialogContent } from "../../lib/components/PageDialog/PageDialogContent";
-import { PageDialogButton } from "../../lib/components/PageDialog/PageDialogButton";
+import { PageDialogActions } from "../../../lib/components/PageDialog/PageDialogActions";
+import { PageDialogContent } from "../../../lib/components/PageDialog/PageDialogContent";
+import { PageDialogButton } from "../../../lib/components/PageDialog/PageDialogButton";
 
 export const JoinRoomPage = () => {
   const history = useHistory();

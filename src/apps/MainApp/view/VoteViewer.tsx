@@ -14,7 +14,7 @@ function VisibleVote(props: { vote: number }) {
 function HiddenVote() {
   return (
     <div>
-      <div className="w-16 p-xl p-1.5 h-24 bg-gray-50 my-2 rounded text-center shadow bg-brand-green  hover:text-white cursor-pointer"></div>
+      <div className="w-16 p-xl p-1.5 h-24 bg-gray-50 my-2 rounded text-center shadow bg-brand-green  hover:text-white cursor-pointer" />
       <span className=" font-bold text-capitalize">Ernesto</span>
     </div>
   );
@@ -23,7 +23,7 @@ function HiddenVote() {
 function PendingVote() {
   return (
     <div>
-      <div className="w-16 p-xl p-1.5 h-24 bg-gray-50 my-2 rounded text-center shadow bg-gray-300  hover:text-white cursor-pointer"></div>
+      <div className="w-16 p-xl p-1.5 h-24 bg-gray-50 my-2 rounded text-center shadow bg-gray-300  hover:text-white cursor-pointer" />
       <span className=" font-bold text-capitalize">Ernesto</span>
     </div>
   );
