@@ -7,7 +7,6 @@ import LandingPageHeader from "./LandingPageHeader";
 import { useTitle } from "../../hooks/useTitle";
 import { LandingPageIllustration } from "../../assets/images/LandingPageIllustration";
 import { IllustrationContainer } from "../../lib/components/IllustrationContainer";
-import { CreateRoom } from "../MainApp/CreateRoom";
 import {
   Container,
   LeftColumn,
@@ -17,12 +16,10 @@ import {
 import { Heading } from "../../lib/components/misc/Typography";
 
 const LandingPage: React.FC<any> = () => {
-  const [isCreateRoomDialogOpen, setIsCreateRoomDialogOpen] = useState(false);
-  const openDialog = async () => {
-    setIsCreateRoomDialogOpen(true);
-  };
-  const closeDialog = async () => {
-    setIsCreateRoomDialogOpen(false);
+  const history = useHistory();
+
+  const navigateToCreateRoomPage = () => {
+    history.push("/createRoom");
   };
 
   useTitle("Poker Planning");
@@ -38,7 +35,10 @@ const LandingPage: React.FC<any> = () => {
                 Easy <span className="text-brand-blue">estimates</span> for
                 <span className="text-brand-blue"> efficient</span> teams.
               </Heading>
-              <PrimaryButton onClick={openDialog} className="my-6">
+              <PrimaryButton
+                onClick={navigateToCreateRoomPage}
+                className="my-6"
+              >
                 Create A New Room
               </PrimaryButton>
             </LeftColumn>
@@ -54,7 +54,6 @@ const LandingPage: React.FC<any> = () => {
         className="w-auto h-32 bg-brand-yellow relative"
         initial={{ rotate: 2.5, y: -50, zIndex: -10 }}
       />
-      <CreateRoom open={isCreateRoomDialogOpen} close={closeDialog} />
     </>
   );
 };
