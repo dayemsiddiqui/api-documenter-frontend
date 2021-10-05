@@ -1,9 +1,9 @@
 import React from "react";
 import { IndividualVote } from "./IndividualVote";
-import { useVoteViewer } from "../state/useVoteViewer";
+import { usePokerRoom } from "../state/usePokerRoom";
 
-export const VoteViewer: React.FC<{}> = () => {
-  const { participants } = useVoteViewer();
+export const PokerRoom: React.FC<{}> = () => {
+  const { participants } = usePokerRoom();
   return (
     <>
       <div className="grid grid-cols-4 justify-items-center">

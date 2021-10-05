@@ -1,7 +1,7 @@
 import React from "react";
 import LandingPageHeader from "../../LandingPageApp/LandingPageHeader";
 import { CardSelector } from "./CardSelector";
-import { VoteViewer } from "./VoteViewer";
+import { PokerRoom } from "./PokerRoom";
 import { PrimaryLink } from "../../../lib/components/misc/Links";
 import Swal from "sweetalert2";
 
@@ -32,7 +32,7 @@ export const MainApp: React.FC<{}> = () => {
     <div>
       <LandingPageHeader roundedHeaderButton={false} />
       <div className="max-w-xl mx-auto ">
-        <VoteViewer />
+        <PokerRoom />
         <button className=" w-full my-4 bg-brand-red hover:bg-red-500 py-2 right rounded-lg text-capitalize text-white font-bold shadow">
           Show Cards
         </button>
