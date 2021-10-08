@@ -54,6 +54,26 @@ export const Room: React.FC<{}> = () => {
   const { pokerGame, newPokerGame } = useRoom();
   const pokerGameContext = usePokerGame(pokerGame);
 
+  const startNewGame = () => {
+    if (!pokerGameContext.isGameFinished()) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "Estimation is still in progress!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, start a new game!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          newPokerGame();
+        }
+      });
+      return;
+    }
+    newPokerGame();
+  };
+
   return (
     <PokerGameContext.Provider value={pokerGameContext}>
       <div>
@@ -62,7 +82,7 @@ export const Room: React.FC<{}> = () => {
           <PokerGame />
           <div className="flex-col justify-center pt-1 text-center">
             <button
-              onClick={newPokerGame}
+              onClick={startNewGame}
               className=" w-full my-4 bg-brand-red hover:bg-red-500 py-2 right rounded-lg text-capitalize text-white font-bold shadow"
             >
               New Game
