@@ -51,5 +51,6 @@ export const useRoom = () => {
   return {
     pokerGame,
     newPokerGame,
+    setPokerGame,
   };
 };

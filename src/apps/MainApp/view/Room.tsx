@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import LandingPageHeader from "../../LandingPageApp/LandingPageHeader";
 import { PickVote } from "./PickVote";
 import { PokerGame } from "./PokerGame";
@@ -6,8 +6,11 @@ import { PrimaryLink } from "../../../lib/components/misc/Links";
 import Swal from "sweetalert2";
 import { useRoom } from "../state/useRoom";
 import { PokerGameContext } from "../state/PokerGameContext";
+import { GameResult } from "./GameResult";
+import { ELSE, IF, THEN } from "../../../lib/components/Logic/If";
+import { PokerGameState } from "../domain/PokerGame.model";
 
-export const Room: React.FC<{}> = () => {
+function RoomBottomSection() {
   const winners = [
     {
       storyPoint: "3",
@@ -22,6 +25,22 @@ export const Room: React.FC<{}> = () => {
       votes: 2,
     },
   ];
+  const { pokerGame } = useContext(PokerGameContext);
+  return (
+    <div className="fixed bottom-0 w-full">
+      <IF condition={pokerGame?.state === PokerGameState.Visible}>
+        <THEN>
+          <GameResult winners={winners} />
+        </THEN>
+        <ELSE>
+          <PickVote />
+        </ELSE>
+      </IF>
+    </div>
+  );
+}
+
+export const Room: React.FC<{}> = () => {
   const showInviteLink = () => {
     Swal.fire({
       title: "Share Invitation Link",
@@ -31,10 +50,15 @@ export const Room: React.FC<{}> = () => {
     });
   };
 
-  const { pokerGame, newPokerGame } = useRoom();
+  const { pokerGame, newPokerGame, setPokerGame } = useRoom();
 
   return (
-    <PokerGameContext.Provider value={pokerGame}>
+    <PokerGameContext.Provider
+      value={{
+        pokerGame,
+        setPokerGame,
+      }}
+    >
       <div>
         <LandingPageHeader roundedHeaderButton={false} />
         <div className="max-w-2xl mx-auto ">
@@ -51,9 +75,7 @@ export const Room: React.FC<{}> = () => {
             </PrimaryLink>
           </div>
         </div>
-        <div className="fixed bottom-0 w-full">
-          <PickVote />
-        </div>
+        <RoomBottomSection />
       </div>
     </PokerGameContext.Provider>
   );

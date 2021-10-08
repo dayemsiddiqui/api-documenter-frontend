@@ -28,7 +28,7 @@ export const PokerGame: React.FC<{}> = () => {
           <ELSE>{displayParticipants(participants)}</ELSE>
         </IF>
       </div>
-      <Show when={everyoneHasVoted()}>
+      <Show when={!everyoneHasVoted()}>
         <button
           onClick={showVotes}
           className=" w-full mt-4 bg-brand-red hover:bg-red-500 py-2 right rounded-lg text-capitalize text-white font-bold shadow"
