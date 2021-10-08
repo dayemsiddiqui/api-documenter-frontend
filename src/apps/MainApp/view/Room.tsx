@@ -26,17 +26,10 @@ function RoomBottomSection() {
       votes: 2,
     },
   ];
-  const { pokerGame } = useContext(PokerGameContext);
+  const { votesAreVisible } = useContext(PokerGameContext);
   return (
     <div className="fixed bottom-0 w-full">
-      <IF condition={pokerGame?.state === PokerGameState.Visible}>
-        <THEN>
-          <GameResult />
-        </THEN>
-        <ELSE>
-          <PickVote />
-        </ELSE>
-      </IF>
+      {votesAreVisible() ? <GameResult /> : <PickVote />}
     </div>
   );
 }

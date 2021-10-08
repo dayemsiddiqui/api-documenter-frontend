@@ -27,10 +27,9 @@ export const PokerGame: React.FC<{}> = () => {
   return (
     <>
       <div className="grid grid-cols-4 justify-items-center">
-        <IF condition={isGameFinished()}>
-          <THEN>{displayVotes(pokerGame.participants)}</THEN>
-          <ELSE>{displayParticipants(pokerGame.participants)}</ELSE>
-        </IF>
+        {isGameFinished()
+          ? displayVotes(pokerGame.participants)
+          : displayParticipants(pokerGame.participants)}
       </div>
       <Show when={everyoneHasVoted()}>
         <button
