@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AccessibleNavigationAnnouncer from "./lib/components/AccessibleNavigationAnnouncer";
 import { Auth } from "./Authentication/state/Auth";
 import LandingPage from "./apps/LandingPageApp/LandingPage";
-import { MainApp } from "./apps/MainApp/view/MainApp";
+import { Room } from "./apps/MainApp/view/Room";
 import { JoinRoomPage } from "./apps/MainApp/view/JoinRoomPage";
 import { CreateRoomPage } from "./apps/MainApp/view/CreateRoomPage";
 
@@ -14,7 +14,7 @@ function App() {
         <Router>
           <AccessibleNavigationAnnouncer />
           <Switch>
-            <Route path="/app" component={MainApp} />
+            <Route path="/app" component={Room} />
             <Route path="/joinRoom" component={JoinRoomPage} />
             <Route path="/createRoom" component={CreateRoomPage} />
             <Route path="/" component={LandingPage} />

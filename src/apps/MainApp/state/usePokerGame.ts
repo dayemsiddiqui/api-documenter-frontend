@@ -1,58 +1,27 @@
-import { Factory } from "fishery";
-import { v4 } from "uuid";
-import { names, uniqueNamesGenerator } from "unique-names-generator";
-import { useState } from "react";
-import {
-  ParticipantModel,
-  ParticipantStatus,
-} from "../domain/Participant.model";
-import { PokerGameState } from "../domain/PokerGame.model";
+import { useEffect, useState } from "react";
+import { ParticipantStatus } from "../domain/Participant.model";
+import { PokerGameModel, PokerGameState } from "../domain/PokerGame.model";
 
-export const participantFactory = Factory.define<ParticipantModel>(
-  ({ afterBuild }) => {
-    afterBuild((participant) => {
-      participant.displayName = uniqueNamesGenerator({
-        dictionaries: [names],
-      });
-      return participant;
-    });
-    return {
-      displayName: "Ernesto",
-      id: v4(),
-      vote: 2,
-      status: ParticipantStatus.Pending,
-    };
-  }
-);
-
-export const usePokerGame = () => {
-  const initialParticipants: ParticipantModel[] = [
-    ...participantFactory.buildList(8, {
-      status: ParticipantStatus.Pending,
-    }),
-  ];
-  // TODO: Model the participant concept properly
-  /**
-   * TODO: Model Poker Game state and Vote State Separately
-   * Poker Game has following two states: Visible, Hidden
-   * Vote Itself has two states:  Voted, Pending
-   * Domain Rules:
-   * - If any of the vote is Pending then the game state cannot be Visible
-   */
-  const [participants, setParticipant] = useState(initialParticipants);
+export const usePokerGame = (pokerGame: PokerGameModel) => {
+  const [participants, setParticipant] = useState(pokerGame.participants);
   const [pokerGameState, setPokerGameState] = useState<PokerGameState>(
-    PokerGameState.Hidden
+    pokerGame.state
   );
   const showVotes = () => {
     // TODO: check if all participants have already voted or not
     setPokerGameState(PokerGameState.Visible);
   };
 
+  useEffect(() => {
+    setParticipant(pokerGame.participants);
+    setPokerGameState(pokerGame.state);
+  }, [pokerGame]);
+
   const isGameFinished = () => {
     return pokerGameState === PokerGameState.Visible;
   };
 
-  const hasEveryOneVoted = () => {
+  const everyoneHasVoted = () => {
     return participants.every(
       (participant) => participant.status === ParticipantStatus.Voted
     );
@@ -62,7 +31,7 @@ export const usePokerGame = () => {
     participants,
     showVotes,
     pokerGameState,
-    hasEveryOneVoted,
+    everyoneHasVoted,
     isGameFinished,
   };
 };

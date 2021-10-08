@@ -3,8 +3,7 @@ import { PersonModel } from "./PersonModel";
 
 export interface RoomModel {
   roomID: string;
-  games: PokerGameModel[];
-  currentGame: PokerGameModel | undefined;
+  game: PokerGameModel;
   persons: PersonModel[];
 }
 
