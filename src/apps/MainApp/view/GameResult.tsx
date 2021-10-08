@@ -1,14 +1,7 @@
 import React from "react";
 import { useGameResult } from "../state/useGameResult";
 
-export interface VotingResultProps {
-  winners: Array<{
-    storyPoint: string;
-    votes: number;
-  }>;
-}
-
-export const GameResult: React.FC<VotingResultProps> = ({ winners }) => {
+export const GameResult: React.FC<{}> = () => {
   const { gameResult } = useGameResult();
   if (gameResult === undefined) {
     throw new Error("Game Result Not Found");
