@@ -9,21 +9,11 @@ export enum PokerGameState {
 // Treat this as a value object, compute this separately in the result page
 export type PokerGameResult = {
   average: number;
-  agreement: number;
-  mostVotedCards: [
-    {
-      count: number;
-      value: VoteValue;
-    },
-    {
-      count: number;
-      value: VoteValue;
-    },
-    {
-      count: number;
-      value: VoteValue;
-    }
-  ];
+  std_deviation: number;
+  mostVotedCards: Array<{
+    count: number;
+    value: VoteValue;
+  }>;
 };
 
 export interface PokerGameModel {

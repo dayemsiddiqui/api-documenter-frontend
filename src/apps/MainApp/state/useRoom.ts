@@ -39,6 +39,7 @@ export const useRoom = () => {
     pokerGameID: v4(),
   });
 
+  // TODO: move this to usePokerGame
   const newPokerGame = () => {
     console.log("Creating new Poker Game");
     setPokerGame({
@@ -51,7 +52,7 @@ export const useRoom = () => {
   };
 
   useEffect(() => {
-    setInterval(mockWebSocketVoting, 3000);
+    setInterval(mockWebSocketVoting, 1000);
   }, []);
 
   const mockWebSocketVoting = () => {
