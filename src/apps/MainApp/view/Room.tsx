@@ -31,7 +31,7 @@ function RoomBottomSection() {
     <div className="fixed bottom-0 w-full">
       <IF condition={pokerGame?.state === PokerGameState.Visible}>
         <THEN>
-          <GameResult winners={winners} />
+          <GameResult />
         </THEN>
         <ELSE>
           <PickVote />
