@@ -5,13 +5,10 @@ import { ParticipantModel } from "../domain/Participant.model";
 import { DisplayVote } from "./DisplayVote";
 import { Show } from "../../../lib/components/Logic/Show";
 import { ELSE, IF, THEN } from "../../../lib/components/Logic/If";
-import { PokerGameModel } from "../domain/PokerGame.model";
 
-export const PokerGame: React.FC<{ pokerGame: PokerGameModel }> = ({
-  pokerGame,
-}) => {
+export const PokerGame: React.FC<{}> = () => {
   const { participants, isGameFinished, showVotes, everyoneHasVoted } =
-    usePokerGame(pokerGame);
+    usePokerGame();
   const displayParticipants = (participants: ParticipantModel[]) => {
     return participants.map((participant) => (
       <Participant participant={participant} />

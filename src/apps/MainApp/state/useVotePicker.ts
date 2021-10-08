@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CardModel } from "../domain/Card.model";
 
-export const useCardSelector = () => {
+export const useVotePicker = () => {
   const cards: CardModel[] = [
     {
       value: 1,

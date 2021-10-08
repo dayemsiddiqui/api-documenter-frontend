@@ -1,10 +1,10 @@
 import React from "react";
 import classNames from "classnames";
 import { motion } from "framer-motion";
-import { useCardSelector } from "../state/useCardSelector";
+import { useVotePicker } from "../state/useVotePicker";
 
-export const CardSelector: React.FC<{}> = () => {
-  const { cards, isSelectedCard, pickCard } = useCardSelector();
+export const PickVote: React.FC<{}> = () => {
+  const { cards, isSelectedCard, pickCard } = useVotePicker();
 
   return (
     <div className=" bg-brand-blue p-4">

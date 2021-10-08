@@ -8,7 +8,7 @@ export interface VotingResultProps {
   }>;
 }
 
-export const VotingResult: React.FC<VotingResultProps> = ({ winners }) => {
+export const GameResult: React.FC<VotingResultProps> = ({ winners }) => {
   return (
     <div className=" bg-brand-blue p-4">
       <div className="flex space-x-3 justify-center">
