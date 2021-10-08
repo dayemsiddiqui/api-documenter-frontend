@@ -6,7 +6,9 @@ import {
 import { names, uniqueNamesGenerator } from "unique-names-generator";
 import { v4 } from "uuid";
 import { PokerGameModel, PokerGameState } from "../domain/PokerGame.model";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { sample } from "lodash";
+import { VoteValue } from "../domain";
 
 export const participantFactory = Factory.define<ParticipantModel>(
   ({ afterBuild }) => {
@@ -48,9 +50,47 @@ export const useRoom = () => {
     });
   };
 
+  useEffect(() => {
+    setInterval(mockWebSocketVoting, 3000);
+  }, []);
+
+  const mockWebSocketVoting = () => {
+    const allParticipantAlreadyVoted = pokerGame.participants.every(
+      (participant) => participant.status === ParticipantStatus.Voted
+    );
+    if (allParticipantAlreadyVoted) {
+      return;
+    }
+    let oneParticipantAlreadyVoted = false;
+    console.log("Participant is voting...");
+    const updatedParticipants = pokerGame.participants.map((participant) => {
+      if (
+        participant.status === ParticipantStatus.Pending &&
+        oneParticipantAlreadyVoted === false
+      ) {
+        participant.vote = sample<VoteValue>([
+          "?",
+          1,
+          2,
+          3,
+          5,
+          8,
+          13,
+        ]) as VoteValue;
+        participant.status = ParticipantStatus.Voted;
+        oneParticipantAlreadyVoted = true;
+      }
+
+      return participant;
+    });
+    setPokerGame({
+      ...pokerGame,
+      participants: updatedParticipants,
+    });
+  };
+
   return {
     pokerGame,
     newPokerGame,
-    setPokerGame,
   };
 };

@@ -14,7 +14,7 @@ export const GameResult: React.FC<VotingResultProps> = ({ winners }) => {
       <div className="flex space-x-3 justify-center">
         {winners.map((card) => {
           return (
-            <div>
+            <div key={card.storyPoint}>
               <div className="w-32 h-46  rounded text-center shadow bg-brand-yellow  text-white cursor-pointer">
                 <p className="py-16 font-bold text-6xl ">{card.storyPoint}</p>
               </div>

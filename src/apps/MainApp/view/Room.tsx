@@ -9,6 +9,7 @@ import { PokerGameContext } from "../state/PokerGameContext";
 import { GameResult } from "./GameResult";
 import { ELSE, IF, THEN } from "../../../lib/components/Logic/If";
 import { PokerGameState } from "../domain/PokerGame.model";
+import { usePokerGame } from "../state/usePokerGame";
 
 function RoomBottomSection() {
   const winners = [
@@ -50,15 +51,11 @@ export const Room: React.FC<{}> = () => {
     });
   };
 
-  const { pokerGame, newPokerGame, setPokerGame } = useRoom();
+  const { pokerGame, newPokerGame } = useRoom();
+  const pokerGameContext = usePokerGame(pokerGame);
 
   return (
-    <PokerGameContext.Provider
-      value={{
-        pokerGame,
-        setPokerGame,
-      }}
-    >
+    <PokerGameContext.Provider value={pokerGameContext}>
       <div>
         <LandingPageHeader roundedHeaderButton={false} />
         <div className="max-w-2xl mx-auto ">

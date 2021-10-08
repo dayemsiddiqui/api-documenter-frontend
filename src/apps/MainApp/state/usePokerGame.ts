@@ -1,13 +1,15 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ParticipantStatus } from "../domain/Participant.model";
-import { PokerGameState } from "../domain/PokerGame.model";
-import { PokerGameContext } from "./PokerGameContext";
+import { PokerGameModel, PokerGameState } from "../domain/PokerGame.model";
+import { PokerGameContextType } from "./PokerGameContext";
+import { v4 } from "uuid";
+import { sample } from "lodash";
+import { VoteValue } from "../domain";
 
-export const usePokerGame = () => {
-  const { pokerGame, setPokerGame } = useContext(PokerGameContext);
-  if (pokerGame === undefined) {
-    throw new Error("Use this context inside <PokerGameContext> provider");
-  }
+export const usePokerGame = (
+  initalPokerGame: PokerGameModel
+): PokerGameContextType => {
+  const [pokerGame, setPokerGame] = useState(initalPokerGame);
 
   const showVotes = () => {
     // TODO: check if all participants have already voted or not
@@ -17,9 +19,15 @@ export const usePokerGame = () => {
     });
   };
 
+  useEffect(() => {
+    setPokerGame(initalPokerGame);
+  }, [initalPokerGame]);
+
   const isGameFinished = () => {
-    return pokerGame.state === PokerGameState.Visible;
+    return everyoneHasVoted() && votesAreVisible();
   };
+
+  const votesAreVisible = () => pokerGame.state === PokerGameState.Visible;
 
   const everyoneHasVoted = () => {
     return pokerGame.participants.every(
@@ -28,10 +36,14 @@ export const usePokerGame = () => {
   };
 
   return {
-    participants: pokerGame.participants,
     showVotes,
-    pokerGameState: pokerGame.state,
     everyoneHasVoted,
     isGameFinished,
+    votesAreVisible,
+    pokerGame: {
+      pokerGameID: v4(),
+      state: pokerGame.state,
+      participants: pokerGame.participants,
+    },
   };
 };
