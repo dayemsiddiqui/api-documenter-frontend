@@ -38,7 +38,7 @@ export const Room: React.FC<{}> = () => {
   const showInviteLink = () => {
     Swal.fire({
       title: "Share Invitation Link",
-      text: "https://planning-poker-game.netlify.app/",
+      text: window.location.href,
       icon: "success",
       confirmButtonColor: "#59C9A5",
     });

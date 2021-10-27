@@ -10873,10 +10873,10 @@ pkg-up@^2.0.0:
   dependencies:
     find-up "^2.1.0"
 
-planning-poker-client-sdk@^1.0.14:
-  version "1.0.14"
-  resolved "https://registry.yarnpkg.com/planning-poker-client-sdk/-/planning-poker-client-sdk-1.0.14.tgz#3f13ae2f604fee06ac34dfbd48faaed692e2a3bf"
-  integrity sha512-dUEAqFpy2p1okQY90Osd7NmJlnN54sF2Tfia+RtIoCB3oxXhM1KGoADFNCwjDxHvT/188gloW2OHNd1N7mNWgQ==
+planning-poker-client-sdk@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/planning-poker-client-sdk/-/planning-poker-client-sdk-1.1.0.tgz#285a794e4df81dbc9ccec6903596a8c536d7b79f"
+  integrity sha512-EARuguG9h2ympL/ccbig3sbLbxEtO8NAMQsoRsgFKafgp85cR/poMgSgrORuFID+ldGWGmXJcU+xHITGACTmaQ==
 
 pnp-webpack-plugin@1.6.4:
   version "1.6.4"
