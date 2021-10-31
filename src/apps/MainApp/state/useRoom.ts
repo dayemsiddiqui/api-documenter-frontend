@@ -21,7 +21,7 @@ export const participantFactory = Factory.define<ParticipantModel>(
     return {
       displayName: "Ernesto",
       id: v4(),
-      vote: 2,
+      vote: "2",
       status: ParticipantStatus.Pending,
     };
   }
@@ -71,12 +71,12 @@ export const useRoom = () => {
       ) {
         participant.vote = sample<VoteValue>([
           "?",
-          1,
-          2,
-          3,
-          5,
-          8,
-          13,
+          "1",
+          "2",
+          "3",
+          "5",
+          "8",
+          "13",
         ]) as VoteValue;
         participant.status = ParticipantStatus.Voted;
         oneParticipantAlreadyVoted = true;

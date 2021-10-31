@@ -4,31 +4,31 @@ import { CardModel } from "../domain/Card.model";
 export const useVotePicker = () => {
   const cards: CardModel[] = [
     {
-      value: 1,
+      value: "1",
     },
     {
-      value: 2,
+      value: "2",
     },
     {
-      value: 3,
+      value: "3",
     },
     {
-      value: 5,
+      value: "5",
     },
     {
-      value: 8,
+      value: "8",
     },
     {
-      value: 13,
+      value: "13",
     },
     {
-      value: 21,
+      value: "21",
     },
     {
-      value: 34,
+      value: "34",
     },
     {
-      value: 55,
+      value: "55",
     },
     {
       value: "?",

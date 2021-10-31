@@ -7,8 +7,6 @@ import Swal from "sweetalert2";
 import { useRoom } from "../state/useRoom";
 import { PokerGameContext } from "../state/PokerGameContext";
 import { GameResult } from "./GameResult";
-import { ELSE, IF, THEN } from "../../../lib/components/Logic/If";
-import { PokerGameState } from "../domain/PokerGame.model";
 import { usePokerGame } from "../state/usePokerGame";
 
 function RoomBottomSection() {

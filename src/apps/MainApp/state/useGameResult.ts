@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { PokerGameContext } from "./PokerGameContext";
 import { PokerGameResult } from "../domain/PokerGame.model";
 import { countBy, groupBy, mean, meanBy, round, sortBy } from "lodash";
-import { FibonacciSeries, VoteValue } from "../domain";
+import { VoteValue } from "../domain";
 import { ParticipantModel } from "../domain/Participant.model";
 import { std, variance } from "mathjs";
 
@@ -21,7 +21,8 @@ export const useGameResult = () => {
   useEffect(() => {
     if (isGameFinished()) {
       const participantsWithLegalVote = pokerGame.participants.filter(
-        (participant) => participant.vote !== "?"
+        (participant) =>
+          participant.vote !== "?" && participant.vote !== "NotVoted"
       );
       const result: PokerGameResult = {
         average: average(participantsWithLegalVote),
@@ -38,10 +39,8 @@ export const useGameResult = () => {
   };
 
   const std_deviation = (participants: ParticipantModel[]) => {
-    const votes = participants.map(
-      (participant) => participant.vote as FibonacciSeries
-    );
-    const std_div = std(votes);
+    const votes = participants.map((participant) => participant.vote);
+    const std_div = std(votes.map(parseInt));
     return round(std_div, 1);
   };
 
