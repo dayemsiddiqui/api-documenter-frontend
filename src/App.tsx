@@ -14,7 +14,7 @@ function App() {
         <Router>
           <AccessibleNavigationAnnouncer />
           <Switch>
-            <Route path="/room" component={Room} />
+            <Route path="/room/:roomID" component={Room} />
             <Route path="/joinRoom" component={JoinRoomPage} />
             <Route path="/createRoom" component={CreateRoomPage} />
             <Route path="/" component={LandingPage} />

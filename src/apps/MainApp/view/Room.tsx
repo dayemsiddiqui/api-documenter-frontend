@@ -8,6 +8,8 @@ import { useRoom } from "../state/useRoom";
 import { PokerGameContext } from "../state/PokerGameContext";
 import { GameResult } from "./GameResult";
 import { usePokerGame } from "../state/usePokerGame";
+import { useGetRoomApi } from "../infra/useGetRoomApi";
+import { useParams } from "react-router-dom";
 
 function RoomBottomSection() {
   const winners = [
@@ -41,8 +43,10 @@ export const Room: React.FC<{}> = () => {
       confirmButtonColor: "#59C9A5",
     });
   };
-
+  const { roomID } = useParams<{ roomID: string }>();
   const { pokerGame, newPokerGame } = useRoom();
+  // TODO: Get room ID via react-router
+  const { isSuccess, data, isLoading } = useGetRoomApi(roomID);
   const pokerGameContext = usePokerGame(pokerGame);
 
   const startNewGame = () => {

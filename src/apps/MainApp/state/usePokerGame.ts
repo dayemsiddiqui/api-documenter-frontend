@@ -3,8 +3,6 @@ import { ParticipantStatus } from "../domain/Participant.model";
 import { PokerGameModel, PokerGameState } from "../domain/PokerGame.model";
 import { PokerGameContextType } from "./PokerGameContext";
 import { v4 } from "uuid";
-import { sample } from "lodash";
-import { VoteValue } from "../domain";
 
 export const usePokerGame = (
   initalPokerGame: PokerGameModel
