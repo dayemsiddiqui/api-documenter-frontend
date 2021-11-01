@@ -47,7 +47,7 @@ export const Room: React.FC<{}> = () => {
   const { pokerGame, newPokerGame } = useRoom();
   // TODO: Get room ID via react-router
   const { isSuccess, data, isLoading } = useGetRoomApi(roomID);
-  const pokerGameContext = usePokerGame(pokerGame);
+  const pokerGameContext = usePokerGame(data ? data : pokerGame);
 
   const startNewGame = () => {
     if (!pokerGameContext.isGameFinished()) {
