@@ -35,6 +35,11 @@ function RoomBottomSection() {
 }
 
 export const Room: React.FC<{}> = () => {
+  /**
+   * TODO: How to find out in a new user is joining an exisitng room or someone joined an exisiting room
+   * Solution: Update the backend, always create an empty room and then call a separate api for joining the room
+   */
+
   const showInviteLink = () => {
     Swal.fire({
       title: "Share Invitation Link",
