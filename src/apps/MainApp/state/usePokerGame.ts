@@ -1,33 +1,77 @@
 import { useEffect, useState } from "react";
-import { ParticipantStatus } from "../domain/Participant.model";
+import {
+  ParticipantModel,
+  ParticipantStatus,
+} from "../domain/Participant.model";
 import { PokerGameModel, PokerGameState } from "../domain/PokerGame.model";
 import { PokerGameContextType } from "./PokerGameContext";
 import { v4 } from "uuid";
+import {
+  ParticipantResponse,
+  RoomResponse,
+} from "planning-poker-client-sdk/api/api";
+import { VoteValue } from "../domain";
+
+const toParticipantModel = (
+  response: ParticipantResponse
+): ParticipantModel => {
+  return {
+    id: response.id,
+    status:
+      response.vote === "NotVoted"
+        ? ParticipantStatus.Pending
+        : ParticipantStatus.Voted,
+    vote: response.vote as VoteValue,
+    displayName: response.displayName,
+  };
+};
 
 export const usePokerGame = (
-  initalPokerGame: PokerGameModel
+  room: RoomResponse | undefined
 ): PokerGameContextType => {
-  const [pokerGame, setPokerGame] = useState(initalPokerGame);
-
+  const [pokerGame, setPokerGame] = useState<PokerGameModel | undefined>(
+    undefined
+  );
+  const [isLoading, setIsLoading] = useState(!!pokerGame);
   const showVotes = () => {
-    // TODO: check if all participants have already voted or not
-    setPokerGame({
-      ...pokerGame,
-      state: PokerGameState.Visible,
-    });
+    if (pokerGame) {
+      // TODO: check if all participants have already voted or not
+      setPokerGame({
+        ...pokerGame,
+        state: PokerGameState.Visible,
+      });
+    }
   };
 
   useEffect(() => {
-    setPokerGame(initalPokerGame);
-  }, [initalPokerGame]);
+    const getPokerGameState = () => {
+      if (pokerGame && room && pokerGame.pokerGameID === room?.game.id) {
+        return pokerGame.state;
+      }
+      return PokerGameState.Hidden;
+    };
+    const initialPokerGame: PokerGameModel | undefined = room
+      ? {
+          pokerGameID: room.game.id,
+          state: getPokerGameState(),
+          participants: room.game.participants.map(toParticipantModel),
+        }
+      : undefined;
+
+    setPokerGame(initialPokerGame);
+  }, [room]);
 
   const isGameFinished = () => {
-    return everyoneHasVoted() && votesAreVisible();
+    return pokerGame !== undefined && everyoneHasVoted() && votesAreVisible();
   };
 
-  const votesAreVisible = () => pokerGame.state === PokerGameState.Visible;
+  const votesAreVisible = () =>
+    pokerGame !== undefined && pokerGame.state === PokerGameState.Visible;
 
   const everyoneHasVoted = () => {
+    if (!pokerGame) {
+      return false;
+    }
     return pokerGame.participants.every(
       (participant) => participant.status === ParticipantStatus.Voted
     );
@@ -38,10 +82,11 @@ export const usePokerGame = (
     everyoneHasVoted,
     isGameFinished,
     votesAreVisible,
+    isLoading,
     pokerGame: {
       pokerGameID: v4(),
-      state: pokerGame.state,
-      participants: pokerGame.participants,
+      state: pokerGame ? pokerGame.state : PokerGameState.Hidden,
+      participants: pokerGame ? pokerGame.participants : [],
     },
   };
 };

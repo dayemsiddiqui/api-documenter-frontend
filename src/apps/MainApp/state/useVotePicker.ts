@@ -50,6 +50,7 @@ export const useVotePicker = () => {
   return {
     cards,
     pickCard,
+    selectedCard,
     isSelectedCard,
   };
 };

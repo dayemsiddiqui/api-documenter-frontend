@@ -10873,10 +10873,10 @@ pkg-up@^2.0.0:
   dependencies:
     find-up "^2.1.0"
 
-planning-poker-client-sdk@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/planning-poker-client-sdk/-/planning-poker-client-sdk-1.2.1.tgz#51c7780a7923475668cfa6ae3bc9fef52b89cb8f"
-  integrity sha512-YE66TQer4StPneSkGOGi05bshoikC9H2O6MfdnmCKhc6lCvcEPE8sNUiyA8iCsNg8wD2fHEgvwfucFWc32khMg==
+planning-poker-client-sdk@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/planning-poker-client-sdk/-/planning-poker-client-sdk-1.2.3.tgz#7c90c01e7972381c4e301adabd2ebb560967cc42"
+  integrity sha512-ikPQc2sedVMJwb2+fTTBGqiG6JIrsMpkc6Zjep5ow7kAfN4gqLLLemqpMJQ55nx0kStBbgeLTWlTOk1pa9s02A==
 
 pnp-webpack-plugin@1.6.4:
   version "1.6.4"
@@ -15363,3 +15363,8 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+zustand@^3.6.4:
+  version "3.6.4"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-3.6.4.tgz#2aed404072e3d4538fbc380bcf4eee88b174051d"
+  integrity sha512-liH2ZaEOSiEaVEl7N0CVzoKYZCQPpibfsIgB2ksrjvfu17WME8Eh7XV/MCi5OQM5AnbuYbLowplR03UP5yrNYw==

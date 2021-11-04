@@ -1,24 +1,28 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { PokerGameContext } from "./PokerGameContext";
 import { PokerGameResult } from "../domain/PokerGame.model";
-import { countBy, groupBy, mean, meanBy, round, sortBy } from "lodash";
+import { countBy, meanBy, round } from "lodash";
 import { VoteValue } from "../domain";
 import { ParticipantModel } from "../domain/Participant.model";
-import { std, variance } from "mathjs";
+import { std } from "mathjs";
+import { useRoomStore } from "./roomStore";
 
 export const useGameResult = () => {
   const { pokerGame, isGameFinished } = useContext(PokerGameContext);
-  const [gameResult, setGameResult] = useState<PokerGameResult>({
-    mostVotedCards: [],
-    std_deviation: 1,
-    average: 3,
-  });
+  const { gameResult, setGameResult, gameID } = useRoomStore((state) => ({
+    gameResult: state.gameResult,
+    setGameResult: state.setGameResult,
+    gameID: state.room?.gameID,
+  }));
 
   if (pokerGame === undefined) {
     throw new Error("Poker Game Not Found");
   }
 
   useEffect(() => {
+    if (pokerGame.participants.length === 0) {
+      return;
+    }
     if (isGameFinished()) {
       const participantsWithLegalVote = pokerGame.participants.filter(
         (participant) =>
@@ -31,16 +35,18 @@ export const useGameResult = () => {
       };
       setGameResult(result);
     }
-  }, [pokerGame]);
+  }, [gameID]);
 
   const average = (participants: ParticipantModel[]) => {
-    const average = meanBy(participants, (participant) => participant.vote);
+    const average = meanBy(participants, (participant) =>
+      parseInt(participant.vote)
+    );
     return round(average, 1);
   };
 
   const std_deviation = (participants: ParticipantModel[]) => {
-    const votes = participants.map((participant) => participant.vote);
-    const std_div = std(votes.map(parseInt));
+    const votes = participants.map((participant) => parseInt(participant.vote));
+    const std_div = std(votes);
     return round(std_div, 1);
   };
 

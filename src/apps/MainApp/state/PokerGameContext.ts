@@ -8,6 +8,7 @@ export type PokerGameContextType = {
   everyoneHasVoted: () => boolean;
   isGameFinished: () => boolean;
   votesAreVisible: () => boolean;
+  isLoading: boolean;
 };
 
 export const PokerGameContext = createContext<PokerGameContextType>({
@@ -16,4 +17,5 @@ export const PokerGameContext = createContext<PokerGameContextType>({
   everyoneHasVoted: () => false,
   isGameFinished: () => false,
   votesAreVisible: () => false,
+  isLoading: false,
 });

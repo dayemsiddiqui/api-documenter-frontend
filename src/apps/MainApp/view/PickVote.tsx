@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classNames from "classnames";
 import { motion } from "framer-motion";
 import { useVotePicker } from "../state/useVotePicker";
+import { useParams } from "react-router-dom";
+import { useVoteApi } from "../infra/useVoteApi";
 
 export const PickVote: React.FC<{}> = () => {
-  const { cards, isSelectedCard, pickCard } = useVotePicker();
+  const { cards, isSelectedCard, pickCard, selectedCard } = useVotePicker();
+  const { roomID } = useParams<{ roomID: string }>();
+  const { mutate: vote } = useVoteApi(roomID);
+  useEffect(() => {
+    vote(selectedCard ? selectedCard.value : "NotVoted");
+  }, [selectedCard]);
 
   return (
     <div className=" bg-brand-blue p-4">

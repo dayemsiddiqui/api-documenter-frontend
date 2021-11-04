@@ -4,7 +4,11 @@ import { useGameResult } from "../state/useGameResult";
 export const GameResult: React.FC<{}> = () => {
   const { gameResult } = useGameResult();
   if (gameResult === undefined) {
-    throw new Error("Game Result Not Found");
+    return (
+      <div className=" bg-brand-blue p-4">
+        <div className="flex space-x-3 justify-center">Loading....</div>
+      </div>
+    );
   }
   return (
     <div className=" bg-brand-blue p-4">

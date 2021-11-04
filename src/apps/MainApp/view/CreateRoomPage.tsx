@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PageDialog } from "../../../lib/components/PageDialog/PageDialog";
 import { Redirect, useHistory } from "react-router-dom";
 import { PageDialogContent } from "../../../lib/components/PageDialog/PageDialogContent";
@@ -6,22 +6,29 @@ import { PageDialogActions } from "../../../lib/components/PageDialog/PageDialog
 import { PageDialogButton } from "../../../lib/components/PageDialog/PageDialogButton";
 import { useCreateRoomApi } from "../infra/useCreateRoomApi";
 import { useForm } from "react-hook-form";
-import { CreateRoomRequest } from "planning-poker-client-sdk/api/api";
+import { useJoinRoomApi } from "../infra/useJoinRoomApi";
 
 export const CreateRoomPage = () => {
   const history = useHistory();
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
-  console.log(watch("example")); // watch input value by passing the name of it
   let form: HTMLFormElement | null = null;
-  const { mutate, isSuccess, data } = useCreateRoomApi();
-  const onSubmit = async (data: CreateRoomRequest) => {
-    await mutate(data);
+  const {
+    mutate: createRoom,
+    isSuccess: roomCreated,
+    isLoading,
+    data: room,
+  } = useCreateRoomApi();
+  const [displayName, setDisplayName] = useState<string | undefined>(undefined);
+  const onSubmit = (formData: { name: string; displayName: string }) => {
+    createRoom({
+      name: formData.name,
+    });
+    setDisplayName(formData.displayName);
   };
 
   const navigateToHomePage = () => {
@@ -31,12 +38,20 @@ export const CreateRoomPage = () => {
     form!.dispatchEvent(
       new Event("submit", { cancelable: true, bubbles: true })
     );
-    // history.push("/app");
   };
-  // console.log("Response from server", isSuccess data);
+  const { mutate: joinRoom, isSuccess: roomJoined } = useJoinRoomApi();
+  useEffect(() => {
+    if (roomCreated && displayName !== undefined && room) {
+      joinRoom({
+        roomID: room.id,
+        displayName,
+      });
+    }
+  }, [roomCreated]);
+
   return (
     <PageDialog title="Create Room">
-      {isSuccess && <Redirect to={`/room/${data?.data.id}`} />}
+      {roomJoined && <Redirect to={`/room/${room?.id}`} />}
       <PageDialogContent>
         <form onSubmit={handleSubmit(onSubmit)} ref={(ref) => (form = ref)}>
           <input
@@ -54,7 +69,11 @@ export const CreateRoomPage = () => {
         </form>
       </PageDialogContent>
       <PageDialogActions>
-        <PageDialogButton onClick={navigateToApp} className="success-btn">
+        <PageDialogButton
+          isLoading={isLoading}
+          onClick={navigateToApp}
+          className="success-btn"
+        >
           Create
         </PageDialogButton>
         <PageDialogButton onClick={navigateToHomePage} className="cancel-btn">
