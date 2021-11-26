@@ -66,7 +66,7 @@ const LandingPageHeader: React.FC<any> = ({ logoLink, links, className }) => {
 
   const defaultLogoLink = (
     <LogoLink tw="text-brand-blue hover:text-brand-blue" href="/">
-      <span tw="text-brand-red">Poker</span> Planning
+      <span tw="text-brand-red">API</span> Documentor
     </LogoLink>
   );
 

@@ -22,7 +22,7 @@ const LandingPage: React.FC<any> = () => {
     history.push("/createRoom");
   };
 
-  useTitle("Poker Planning");
+  useTitle("API Documenter");
 
   return (
     <>
@@ -32,14 +32,14 @@ const LandingPage: React.FC<any> = () => {
           <TwoColumn>
             <LeftColumn className="text-white">
               <Heading className="text-brand-red">
-                Easy <span className="text-brand-blue">estimates</span> for
-                <span className="text-brand-blue"> efficient</span> teams.
+                Simple <span className="text-brand-blue">documentation</span> for
+                <span className="text-brand-blue"> agile</span> teams.
               </Heading>
               <PrimaryButton
                 onClick={navigateToCreateRoomPage}
                 className="my-6"
               >
-                Create A New Room
+                Upload API Docs
               </PrimaryButton>
             </LeftColumn>
             <RightColumn>
