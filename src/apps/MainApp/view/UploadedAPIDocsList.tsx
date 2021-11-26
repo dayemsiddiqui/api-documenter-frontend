@@ -1,28 +1,27 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const UploadedAPIDocsList: React.FC<{}> = () => {
-  const [docs, setDocs] = useState<{ name: string; link: string }[]>([
+  const [docs, setDocs] = useState<{ name: string; id: string }[]>([
     {
       name: "insights-core",
-      link: "http://www.google.com",
+      id: "1",
     },
     {
       name: "tp-core",
-      link: "http://www.google.com",
+      id: "2",
     },
     {
       name: "insights-core",
-      link: "http://www.google.com",
+      id: "3",
     },
   ]);
   return (
     <ul>
       {docs.map((doc) => {
         return (
-          <li>
-            <a href={doc.link} className="text-brand-blue underline">
-              {doc.name}
-            </a>
+          <li className="text-brand-blue underline">
+            <Link to={`/render/${doc.id}`}>{doc.name}</Link>
           </li>
         );
       })}
