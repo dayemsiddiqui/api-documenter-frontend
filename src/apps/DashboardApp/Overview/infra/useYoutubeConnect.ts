@@ -8,7 +8,7 @@ export const useYoutubeConnect = () => {
     const idToken = await auth().currentUser?.getIdToken(true);
     const response = await apiClient.get("auth/connect", {
       headers: {
-        "x-id-token": idToken,
+        "x-id-token": idToken as string,
       },
     });
     const url = response.data.url;

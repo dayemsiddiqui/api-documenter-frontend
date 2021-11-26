@@ -19,7 +19,7 @@ const LandingPage: React.FC<any> = () => {
   const history = useHistory();
 
   const navigateToCreateRoomPage = () => {
-    history.push("/createRoom");
+    history.push("/dashboard");
   };
 
   useTitle("API Documenter");
